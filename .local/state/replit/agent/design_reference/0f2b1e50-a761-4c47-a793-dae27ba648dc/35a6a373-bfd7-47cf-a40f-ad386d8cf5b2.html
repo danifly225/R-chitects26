@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R-chitects 26 - Architecture d'Exception, Abidjan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'premium-orange': '#FF6B35',
+                        'deep-black': '#0A0A0A',
+                        'soft-gray': '#F8F8F8',
+                        'light-gray': '#E5E5E5',
+                        'medium-gray': '#666666',
+                        'dark-gray': '#333333',
+                    },
+                    spacing: {
+                        '18': '4.5rem',
+                        '88': '22rem',
+                        '128': '32rem',
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        .smooth-transition { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .gallery-item:hover { transform: translateY(-4px); }
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: #FF6B35;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+    </style>
+</head>
+<body class="font-inter text-deep-black bg-white antialiased">
+
+    <!-- @COMPONENT: Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-sm border-b border-light-gray smooth-transition">
+        <div class="max-w-7xl mx-auto px-8 lg:px-16">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <h1 class="text-2xl font-semibold tracking-tight">R-chitects 26</h1>
+                </div>
+                
+                <div class="hidden md:flex space-x-12">
+                    <a href="#accueil" class="nav-link text-sm font-medium smooth-transition hover:text-premium-orange">Accueil</a>
+                    <a href="#excellence" class="nav-link text-sm font-medium smooth-transition hover:text-premium-orange">Notre Excellence</a>
+                    <a href="#projets" class="nav-link text-sm font-medium smooth-transition hover:text-premium-orange">Projets Signature</a>
+                    <a href="#equipe" class="nav-link text-sm font-medium smooth-transition hover:text-premium-orange">Équipe</a>
+                    <a href="#services" class="nav-link text-sm font-medium smooth-transition hover:text-premium-orange">Services</a>
+                    <a href="#contact" class="nav-link text-sm font-medium smooth-transition hover:text-premium-orange">Contact</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button class="p-2" onclick="toggleMobileMenu()">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-light-gray">
+            <div class="px-8 py-6 space-y-4">
+                <a href="#accueil" class="block text-sm font-medium hover:text-premium-orange smooth-transition">Accueil</a>
+                <a href="#excellence" class="block text-sm font-medium hover:text-premium-orange smooth-transition">Notre Excellence</a>
+                <a href="#projets" class="block text-sm font-medium hover:text-premium-orange smooth-transition">Projets Signature</a>
+                <a href="#equipe" class="block text-sm font-medium hover:text-premium-orange smooth-transition">Équipe</a>
+                <a href="#services" class="block text-sm font-medium hover:text-premium-orange smooth-transition">Services</a>
+                <a href="#contact" class="block text-sm font-medium hover:text-premium-orange smooth-transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+    <!-- @END_COMPONENT: Navigation -->
+
+    <!-- @COMPONENT: Hero Section -->
+    <section id="accueil" class="pt-20 min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-soft-gray">
+        <div class="max-w-7xl mx-auto px-8 lg:px-16 py-32">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div class="space-y-12">
+                    <div class="space-y-6">
+                        <h1 class="text-5xl lg:text-7xl font-light tracking-tight leading-tight">
+                            R-chitects 26
+                        </h1>
+                        <div class="w-16 h-0.5 bg-premium-orange"></div>
+                        <p class="text-xl lg:text-2xl font-light text-medium-gray leading-relaxed">
+                            Architecture d'Exception, Abidjan
+                        </p>
+                    </div>
+                    
+                    <p class="text-lg text-dark-gray leading-relaxed max-w-lg">
+                        Nous créons des espaces architecturaux qui transcendent l'ordinaire, 
+                        alliant innovation contemporaine et excellence intemporelle.
+                    </p>
+                    
+                    <div class="flex space-x-6">
+                        <a href="#projets" class="bg-deep-black text-white px-8 py-4 text-sm font-medium smooth-transition hover:bg-premium-orange">
+                            Découvrir nos projets
+                        </a>
+                        <a href="#contact" class="border border-deep-black px-8 py-4 text-sm font-medium smooth-transition hover:bg-deep-black hover:text-white">
+                            Nous contacter
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <!-- Contemporary luxury building with clean geometric lines -->
+                    <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&h=1200" 
+                         alt="Architecture contemporaine d'exception" 
+                         class="w-full h-128 object-cover shadow-2xl" 
+                         data-mock="true">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Hero Section -->
+
+    <!-- @COMPONENT: Notre Excellence -->
+    <section id="excellence" class="py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-8 lg:px-16">
+            <div class="grid lg:grid-cols-3 gap-16 items-start">
+                <div class="lg:col-span-1">
+                    <h2 class="text-4xl lg:text-5xl font-light tracking-tight leading-tight">
+                        Notre Excellence
+                    </h2>
+                    <div class="w-12 h-0.5 bg-premium-orange mt-6"></div>
+                </div>
+                
+                <div class="lg:col-span-2 space-y-8">
+                    <p class="text-xl font-light text-dark-gray leading-relaxed">
+                        Depuis notre établissement à Abidjan, nous redéfinissons l'architecture contemporaine 
+                        à travers une approche méthodique et une vision d'avant-garde.
+                    </p>
+                    
+                    <div class="grid md:grid-cols-2 gap-12">
+                        <div class="space-y-4">
+                            <h3 class="text-lg font-medium">Vision Architecturale</h3>
+                            <p class="text-medium-gray leading-relaxed">
+                                Chaque projet reflète notre engagement envers l'innovation fonctionnelle 
+                                et l'esthétique intemporelle, créant des espaces qui inspirent et perdurent.
+                            </p>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <h3 class="text-lg font-medium">Approche Méthodique</h3>
+                            <p class="text-medium-gray leading-relaxed">
+                                Notre processus rigoureux intègre recherche approfondie, innovation technique 
+                                et collaboration étroite avec nos clients pour des résultats exceptionnels.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Notre Excellence -->
+
+    <!-- @COMPONENT: Projets Signature -->
+    <section id="projets" class="py-32 bg-soft-gray">
+        <div class="max-w-7xl mx-auto px-8 lg:px-16">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl lg:text-5xl font-light tracking-tight leading-tight mb-6">
+                    Projets Signature
+                </h2>
+                <div class="w-16 h-0.5 bg-premium-orange mx-auto mb-8"></div>
+                <p class="text-xl font-light text-dark-gray max-w-2xl mx-auto">
+                    Une sélection de nos réalisations les plus emblématiques, 
+                    témoignant de notre excellence architecturale.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <!-- @MAP: projects.map(project => ( -->
+                <div class="gallery-item bg-white shadow-lg smooth-transition cursor-pointer" data-mock="true">
+                    <!-- Modern luxury residential building with clean lines -->
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
+                         alt="Résidence de luxe contemporaine" 
+                         class="w-full h-64 object-cover">
+                    <div class="p-8">
+                        <h3 class="text-xl font-medium mb-3" data-bind="project.title">Résidence Plateau</h3>
+                        <p class="text-medium-gray text-sm leading-relaxed" data-bind="project.description">
+                            Architecture résidentielle haut de gamme alliant modernité et fonctionnalité dans le cœur d'Abidjan.
+                        </p>
+                        <div class="mt-6">
+                            <span class="text-xs font-medium text-premium-orange tracking-wider uppercase" data-bind="project.category">Résidentiel</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item bg-white shadow-lg smooth-transition cursor-pointer" data-mock="true">
+                    <!-- Contemporary office building with glass facade -->
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
+                         alt="Immeuble de bureaux moderne" 
+                         class="w-full h-64 object-cover">
+                    <div class="p-8">
+                        <h3 class="text-xl font-medium mb-3" data-bind="project.title">Centre d'Affaires Marcory</h3>
+                        <p class="text-medium-gray text-sm leading-relaxed" data-bind="project.description">
+                            Complexe tertiaire innovant offrant des espaces de travail optimisés pour les entreprises modernes.
+                        </p>
+                        <div class="mt-6">
+                            <span class="text-xs font-medium text-premium-orange tracking-wider uppercase" data-bind="project.category">Commercial</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item bg-white shadow-lg smooth-transition cursor-pointer" data-mock="true">
+                    <!-- Luxury hotel exterior with sophisticated design -->
+                    <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
+                         alt="Hôtel de luxe contemporain" 
+                         class="w-full h-64 object-cover">
+                    <div class="p-8">
+                        <h3 class="text-xl font-medium mb-3" data-bind="project.title">Hôtel Cocody</h3>
+                        <p class="text-medium-gray text-sm leading-relaxed" data-bind="project.description">
+                            Établissement hôtelier de prestige redéfinissant les standards de l'hospitalité en Côte d'Ivoire.
+                        </p>
+                        <div class="mt-6">
+                            <span class="text-xs font-medium text-premium-orange tracking-wider uppercase" data-bind="project.category">Hôtellerie</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item bg-white shadow-lg smooth-transition cursor-pointer" data-mock="true">
+                    <!-- Modern villa with geometric architecture -->
+                    <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
+                         alt="Villa contemporaine design" 
+                         class="w-full h-64 object-cover">
+                    <div class="p-8">
+                        <h3 class="text-xl font-medium mb-3" data-bind="project.title">Villa Deux Plateaux</h3>
+                        <p class="text-medium-gray text-sm leading-relaxed" data-bind="project.description">
+                            Résidence privée d'exception combinant intimité familiale et réception d'envergure.
+                        </p>
+                        <div class="mt-6">
+                            <span class="text-xs font-medium text-premium-orange tracking-wider uppercase" data-bind="project.category">Résidentiel</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item bg-white shadow-lg smooth-transition cursor-pointer" data-mock="true">
+                    <!-- Cultural center with innovative design -->
+                    <img src="https://images.unsplash.com/photo-1567496898669-ee935f5f647a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
+                         alt="Centre culturel moderne" 
+                         class="w-full h-64 object-cover">
+                    <div class="p-8">
+                        <h3 class="text-xl font-medium mb-3" data-bind="project.title">Centre Culturel Treichville</h3>
+                        <p class="text-medium-gray text-sm leading-relaxed" data-bind="project.description">
+                            Espace culturel innovant favorisant les échanges artistiques et sociaux dans un cadre architectural unique.
+                        </p>
+                        <div class="mt-6">
+                            <span class="text-xs font-medium text-premium-orange tracking-wider uppercase" data-bind="project.category">Culturel</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item bg-white shadow-lg smooth-transition cursor-pointer" data-mock="true">
+                    <!-- Mixed-use development with contemporary architecture -->
+                    <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
+                         alt="Complexe mixte contemporain" 
+                         class="w-full h-64 object-cover">
+                    <div class="p-8">
+                        <h3 class="text-xl font-medium mb-3" data-bind="project.title">Complexe Yopougon</h3>
+                        <p class="text-medium-gray text-sm leading-relaxed" data-bind="project.description">
+                            Développement urbain intégré alliant résidences, commerces et espaces communautaires.
+                        </p>
+                        <div class="mt-6">
+                            <span class="text-xs font-medium text-premium-orange tracking-wider uppercase" data-bind="project.category">Mixte</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- @END_MAP )) -->
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Projets Signature -->
+
+    <!-- @COMPONENT: Équipe -->
+    <section id="equipe" class="py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-8 lg:px-16">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl lg:text-5xl font-light tracking-tight leading-tight mb-6">
+                    Notre Équipe
+                </h2>
+                <div class="w-16 h-0.5 bg-premium-orange mx-auto mb-8"></div>
+                <p class="text-xl font-light text-dark-gray max-w-2xl mx-auto">
+                    Des professionnels d'exception unis par la passion de l'architecture 
+                    et l'engagement envers l'excellence.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-16">
+                <!-- @MAP: team.map(member => ( -->
+                <div class="text-center space-y-6" data-mock="true">
+                    <!-- Professional architect portrait - elegant black attire -->
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=500" 
+                         alt="Architecte principal" 
+                         class="w-64 h-80 object-cover mx-auto shadow-lg" 
+                         data-bind="member.photo">
+                    <div class="space-y-3">
+                        <h3 class="text-xl font-medium" data-bind="member.name">Dr. Koné Amadou</h3>
+                        <p class="text-medium-gray font-light" data-bind="member.title">Architecte Principal & Fondateur</p>
+                        <p class="text-sm text-medium-gray leading-relaxed max-w-xs mx-auto" data-bind="member.bio">
+                            15 années d'expertise en architecture contemporaine et développement urbain durable.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="text-center space-y-6" data-mock="true">
+                    <!-- Professional female architect portrait -->
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=500" 
+                         alt="Architecte senior" 
+                         class="w-64 h-80 object-cover mx-auto shadow-lg" 
+                         data-bind="member.photo">
+                    <div class="space-y-3">
+                        <h3 class="text-xl font-medium" data-bind="member.name">Mme. Traoré Aïcha</h3>
+                        <p class="text-medium-gray font-light" data-bind="member.title">Architecte Senior</p>
+                        <p class="text-sm text-medium-gray leading-relaxed max-w-xs mx-auto" data-bind="member.bio">
+                            Spécialiste en design d'intérieur et aménagement d'espaces commerciaux haut de gamme.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="text-center space-y-6" data-mock="true">
+                    <!-- Professional architect portrait - modern attire -->
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=500" 
+                         alt="Chef de projet" 
+                         class="w-64 h-80 object-cover mx-auto shadow-lg" 
+                         data-bind="member.photo">
+                    <div class="space-y-3">
+                        <h3 class="text-xl font-medium" data-bind="member.name">M. Diallo Ousmane</h3>
+                        <p class="text-medium-gray font-light" data-bind="member.title">Chef de Projet</p>
+                        <p class="text-sm text-medium-gray leading-relaxed max-w-xs mx-auto" data-bind="member.bio">
+                            Expert en gestion de projets complexes et coordination d'équipes pluridisciplinaires.
+                        </p>
+                    </div>
+                </div>
+                <!-- @END_MAP )) -->
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Équipe -->
+
+    <!-- @COMPONENT: Services -->
+    <section id="services" class="py-32 bg-soft-gray">
+        <div class="max-w-7xl mx-auto px-8 lg:px-16">
+            <div class="grid lg:grid-cols-2 gap-20 items-start">
+                <div class="space-y-12">
+                    <div>
+                        <h2 class="text-4xl lg:text-5xl font-light tracking-tight leading-tight mb-6">
+                            Services
+                        </h2>
+                        <div class="w-16 h-0.5 bg-premium-orange mb-8"></div>
+                        <p class="text-xl font-light text-dark-gray leading-relaxed">
+                            Une gamme complète de services architecturaux 
+                            pour concrétiser vos projets les plus ambitieux.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="space-y-12">
+                    <div class="space-y-8">
+                        <div class="border-l-2 border-premium-orange pl-8 space-y-4">
+                            <h3 class="text-2xl font-medium">Architecture</h3>
+                            <p class="text-medium-gray leading-relaxed">
+                                Conception architecturale complète, de l'esquisse à la réalisation. 
+                                Nos projets allient innovation esthétique et performance technique, 
+                                créant des espaces qui marquent leur époque.
+                            </p>
+                        </div>
+                        
+                        <div class="border-l-2 border-light-gray pl-8 space-y-4 hover:border-premium-orange smooth-transition">
+                            <h3 class="text-2xl font-medium">Gérance</h3>
+                            <p class="text-medium-gray leading-relaxed">
+                                Gestion professionnelle de patrimoine immobilier. 
+                                Notre approche méthodique assure la valorisation 
+                                et l'optimisation de vos investissements immobiliers.
+                            </p>
+                        </div>
+                        
+                        <div class="border-l-2 border-light-gray pl-8 space-y-4 hover:border-premium-orange smooth-transition">
+                            <h3 class="text-2xl font-medium">Modélisation 3D</h3>
+                            <p class="text-medium-gray leading-relaxed">
+                                Visualisation architecturale haute définition et réalité virtuelle. 
+                                Nos rendus photorealistic permettent d'expérimenter 
+                                vos futurs espaces avant leur construction.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Services -->
+
+    <!-- @COMPONENT: Contact -->
+    <section id="contact" class="py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-8 lg:px-16">
+            <div class="grid lg:grid-cols-2 gap-20">
+                <div class="space-y-12">
+                    <div>
+                        <h2 class="text-4xl lg:text-5xl font-light tracking-tight leading-tight mb-6">
+                            Contact
+                        </h2>
+                        <div class="w-16 h-0.5 bg-premium-orange mb-8"></div>
+                        <p class="text-xl font-light text-dark-gray leading-relaxed">
+                            Démarrons ensemble votre projet architectural d'exception.
+                        </p>
+                    </div>
+                    
+                    <div class="space-y-8">
+                        <div class="space-y-2">
+                            <h3 class="text-lg font-medium">Adresse</h3>
+                            <p class="text-medium-gray">
+                                Plateau, Abidjan<br>
+                                Côte d'Ivoire
+                            </p>
+                        </div>
+                        
+                        <div class="space-y-2">
+                            <h3 class="text-lg font-medium">Téléphone</h3>
+                            <p class="text-medium-gray">+225 XX XX XX XX XX</p>
+                        </div>
+                        
+                        <div class="space-y-2">
+                            <h3 class="text-lg font-medium">Email</h3>
+                            <p class="text-medium-gray">contact@r-chitects26.ci</p>
+                        </div>
+                        
+                        <div class="space-y-2">
+                            <h3 class="text-lg font-medium">Horaires</h3>
+                            <p class="text-medium-gray">
+                                Lundi - Vendredi: 8h00 - 18h00<br>
+                                Samedi: Sur rendez-vous
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-soft-gray p-12">
+                    <form class="space-y-8" data-implementation="Should validate form before submission">
+                        <div class="space-y-6">
+                            <div>
+                                <label for="nom" class="block text-sm font-medium mb-3">Nom *</label>
+                                <input type="text" id="nom" name="nom" required 
+                                       class="w-full px-4 py-4 border border-light-gray focus:border-premium-orange focus:outline-none smooth-transition bg-white">
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-sm font-medium mb-3">Email *</label>
+                                <input type="email" id="email" name="email" required 
+                                       class="w-full px-4 py-4 border border-light-gray focus:border-premium-orange focus:outline-none smooth-transition bg-white">
+                            </div>
+                            
+                            <div>
+                                <label for="telephone" class="block text-sm font-medium mb-3">Téléphone</label>
+                                <input type="tel" id="telephone" name="telephone" 
+                                       class="w-full px-4 py-4 border border-light-gray focus:border-premium-orange focus:outline-none smooth-transition bg-white">
+                            </div>
+                            
+                            <div>
+                                <label for="projet" class="block text-sm font-medium mb-3">Type de projet</label>
+                                <select id="projet" name="projet" 
+                                        class="w-full px-4 py-4 border border-light-gray focus:border-premium-orange focus:outline-none smooth-transition bg-white">
+                                    <option value="">Sélectionner un type</option>
+                                    <option value="residentiel">Résidentiel</option>
+                                    <option value="commercial">Commercial</option>
+                                    <option value="industriel">Industriel</option>
+                                    <option value="culturel">Culturel</option>
+                                    <option value="mixte">Mixte</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block text-sm font-medium mb-3">Message *</label>
+                                <textarea id="message" name="message" rows="6" required 
+                                          class="w-full px-4 py-4 border border-light-gray focus:border-premium-orange focus:outline-none smooth-transition bg-white resize-none"
+                                          placeholder="Décrivez votre projet..."></textarea>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" 
+                                class="w-full bg-deep-black text-white py-4 font-medium smooth-transition hover:bg-premium-orange"
+                                data-event="click:handleSubmit">
+                            Envoyer le message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Contact -->
+
+    <!-- @COMPONENT: Footer -->
+    <footer class="bg-deep-black text-white py-16">
+        <div class="max-w-7xl mx-auto px-8 lg:px-16">
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-semibold tracking-tight">R-chitects 26</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Architecture d'exception à Abidjan. 
+                        Créateurs d'espaces qui transcendent l'ordinaire.
+                    </p>
+                </div>
+                
+                <div class="space-y-6">
+                    <h4 class="text-lg font-medium">Services</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-premium-orange smooth-transition">Architecture</a></li>
+                        <li><a href="#" class="hover:text-premium-orange smooth-transition">Gérance</a></li>
+                        <li><a href="#" class="hover:text-premium-orange smooth-transition">Modélisation 3D</a></li>
+                        <li><a href="#" class="hover:text-premium-orange smooth-transition">Consultation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="space-y-6">
+                    <h4 class="text-lg font-medium">Contact</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li>Plateau, Abidjan</li>
+                        <li>+225 XX XX XX XX XX</li>
+                        <li>contact@r-chitects26.ci</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-400 text-sm">
+                    © 2024 R-chitects 26. Tous droits réservés.
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- @END_COMPONENT: Footer -->
+
+    <script>
+        (function() {
+            // Mobile menu toggle
+            window.toggleMobileMenu = function() {
+                const mobileMenu = document.getElementById('mobile-menu');
+                mobileMenu.classList.toggle('hidden');
+            };
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        // Close mobile menu if open
+                        const mobileMenu = document.getElementById('mobile-menu');
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+
+            // Gallery item interactions
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    // TODO: Implement project detail modal or navigation
+                    console.log('Gallery item clicked:', this);
+                });
+            });
+
+            // Form handling
+            const contactForm = document.querySelector('form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // TODO: Implement form validation and submission
+                    console.log('Form submitted');
+                });
+            }
+
+            // Navbar scroll effect
+            let lastScrollTop = 0;
+            const navbar = document.querySelector('nav');
+            
+            window.addEventListener('scroll', function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    // Scrolling down
+                    navbar.style.transform = 'translateY(-100%)';
+                } else {
+                    // Scrolling up
+                    navbar.style.transform = 'translateY(0)';
+                }
+                lastScrollTop = scrollTop;
+            });
+        })();
+    </script>
+</body>
+</html>
